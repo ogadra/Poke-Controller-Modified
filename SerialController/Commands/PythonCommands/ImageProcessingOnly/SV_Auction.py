@@ -94,7 +94,7 @@ class SV_Money(ImageProcPythonCommand):
         self.press(Button.A)
         self.press(Direction.DOWN, 0.35, 0.1)
         self.incrementDate()
-        if self.isContainTemplate("SV/Auction/first.png", 0.8, show_value=True):
+        if self.isContainTemplate("SV/Auction/first.png", 0.95, show_value=True):
             self.press(Button.HOME, 0.05, 1)
             self.press(Button.HOME, 0.05, 1)
             self.report()
