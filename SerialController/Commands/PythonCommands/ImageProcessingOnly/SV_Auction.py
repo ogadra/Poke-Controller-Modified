@@ -23,19 +23,19 @@ class SV_Money(ImageProcPythonCommand):
                     self.buy_available = True
                     break
                 self.wait(1)
-            print(26,self.buy_available)
             if self.buy_available:
                 for i in buy_item:
                     if self.isContainTemplate(f"SV/Auction/Item/{i}", 0.8, show_value=True):
                         
                         self.press(Button.A,0.1,0.5)
                         while not self.isContainTemplate("SV/Auction/bye.png", 0.8):
-                            self.press(Button.A,0.1,1)
+                            self.press(Button.A,0.1,0.8)
                         self.press(Button.A,0.1,0.5)
                         self.report()
                         self.time()
                         break
-                self.resetGame()
+                    if i == buy_item[-1]:
+                        self.resetGame()
             else:
                 self.report()
                 self.time()
@@ -83,20 +83,8 @@ class SV_Money(ImageProcPythonCommand):
         self.press(Direction.RIGHT)
         self.press(Button.A, 0.05, 0.5)
     
-    def incrementDateReverse(self):
-        self.press(Button.A, 0.05, 0.5)
-        self.press(Direction.LEFT)
-        self.press(Direction.LEFT)
-        self.press(Direction.LEFT)
-        self.press(Direction.UP)
-        self.press(Direction.RIGHT)
-        self.press(Direction.RIGHT)
-        self.press(Direction.RIGHT)
-        self.press(Button.A, 0.05, 0.5)
-        pass
-
     def time(self):
-        self.quitGame()
+        self.press(Button.HOME, 0.1, 0.5)
         self.press(Direction.DOWN)
         self.press(Direction.RIGHT, 0.55)
         self.press(Button.A, 0.05, 1)
@@ -107,7 +95,11 @@ class SV_Money(ImageProcPythonCommand):
         self.press(Direction.DOWN, 0.35, 0.1)
         self.incrementDate()
         if self.isContainTemplate("SV/Auction/first.png", 0.8, show_value=True):
-            self.incrementDateReverse()
-        self.press(Button.HOME, 0.1, 1)
+            self.press(Button.HOME, 0.05, 1)
+            self.press(Button.HOME, 0.05, 1)
+            self.report()
+            self.time()
+
+        self.quitGame()
         self.launchGame()
 
