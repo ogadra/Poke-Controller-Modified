@@ -18,18 +18,18 @@ class SV_Money(ImageProcPythonCommand):
         while True:
             self.buy_available = False
             buy_item = os.listdir("./Template/SV/Auction/Item")
-            for i in range(20):
+            for i in range(60):
                 if self.isContainTemplate("SV/Auction/play.png", 0.9, show_value=True):
                     self.buy_available = True
                     break
-                self.wait(1)
+                self.wait(0.5)
             if self.buy_available:
                 for i in buy_item:
                     if self.isContainTemplate(f"SV/Auction/Item/{i}", 0.8, show_value=True):
                         
                         self.press(Button.A,0.1,0.5)
                         while not self.isContainTemplate("SV/Auction/bye.png", 0.8):
-                            self.press(Button.A,0.1,0.8)
+                            self.press(Button.A,0.1,0.6)
                         self.press(Button.A,0.1,0.5)
                         self.report()
                         self.time()
@@ -37,7 +37,6 @@ class SV_Money(ImageProcPythonCommand):
                     if i == buy_item[-1]:
                         self.resetGame()
             else:
-                self.report()
                 self.time()
 
 
@@ -48,16 +47,14 @@ class SV_Money(ImageProcPythonCommand):
         self.press(Button.A,0.05,0.5)
         while not self.isContainTemplate("SV/Auction/start.png", 0.8):
             self.wait(0.5)
-        self.wait(1)
     
     def launchGame(self):
         self.press(Button.A,0.05,1)
         self.press(Button.A,0.05,1)
         while not self.isContainTemplate("SV/Auction/title.png", 0.8, show_value=True):
             self.wait(1)
-            self.press(Button.A, 0.5,1)
-        self.wait(0.5)
-        self.press(Button.A, 0.5,1)
+        for i in range(4):
+            self.press(Button.A, 0.5, 1.5)
     
     def resetGame(self):
         self.quitGame()
@@ -65,13 +62,15 @@ class SV_Money(ImageProcPythonCommand):
 
     def report(self):
         while not self.isContainTemplate("SV/Auction/menu.png", 0.8):
-            self.press(Button.X,0.1,1)
-        self.press(Button.R, 0.1,1)
-        self.press(Button.A, 0.1,1)
+            self.press(Button.B)
+            self.press(Button.B)
+            self.press(Button.X, 0.1, 1)
+        self.press(Button.R, 0.1, 1)
+        self.press(Button.A, 0.1, 1)
         while not self.isContainTemplate("SV/Auction/report.png", 0.8, show_value=True):
             self.wait(0.1)
             pass
-        self.press(Button.A, 0.1,1)
+        self.press(Button.A, 0.1,0.8)
 
     def incrementDate(self):
         self.press(Button.A, 0.05, 0.5)
