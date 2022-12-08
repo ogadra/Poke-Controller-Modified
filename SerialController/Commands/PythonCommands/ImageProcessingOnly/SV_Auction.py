@@ -65,7 +65,7 @@ class SV_Money(ImageProcPythonCommand):
             self.press(Button.B)
             self.press(Button.B)
             self.press(Button.X, 0.1, 1)
-        self.press(Button.R, 0.1, 1)
+        self.press(Button.R, 0.1, 1.5)
         self.press(Button.A, 0.1, 1)
         while not self.isContainTemplate("SV/Auction/report.png", 0.8, show_value=True):
             self.wait(0.1)
